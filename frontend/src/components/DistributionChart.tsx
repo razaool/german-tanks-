@@ -74,40 +74,53 @@ export const DistributionChart: React.FC<DistributionChartProps> = ({ data }) =>
       </p>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart data={histogramData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" />
           <XAxis
             dataKey="estimate"
-            label={{ value: 'Estimated Number of Tanks', position: 'insideBottom', offset: -10 }}
-            tick={{ fontSize: 12 }}
+            label={{ value: 'Estimated Number of Tanks', position: 'insideBottom', offset: -10, fill: '#a0a0a0', style: { fontSize: '14px' } }}
+            tick={{ fontSize: 12, fill: '#a0a0a0' }}
+            stroke="#2a2a2a"
           />
           <YAxis
-            label={{ value: 'Frequency', angle: -90, position: 'insideLeft' }}
-            tick={{ fontSize: 12 }}
+            label={{ value: 'Frequency', angle: -90, position: 'insideLeft', fill: '#a0a0a0', style: { fontSize: '14px' } }}
+            tick={{ fontSize: 12, fill: '#a0a0a0' }}
+            stroke="#2a2a2a"
           />
           <Tooltip
+            contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #3b82f6', borderRadius: '8px', color: '#ffffff' }}
             formatter={(value: number, name: string) => [value, name === 'naive_count' ? 'Naive' : 'MVUE']}
             labelFormatter={(label: number) => `Estimate: ${label.toLocaleString()}`}
           />
-          <Legend />
+          <Legend wrapperStyle={{ color: '#d0d0d0' }} />
           <ReferenceLine
             x={data.true_population}
-            stroke="red"
-            label={{ value: 'True N', position: 'top' }}
+            stroke="#ef4444"
+            label={{ value: 'True N', position: 'top', fill: '#ef4444', fontSize: 13 }}
             strokeWidth={2}
             strokeDasharray="5 5"
           />
           <Bar
             dataKey="naive_count"
-            fill="#3b82f6"
+            fill="url(#naiveGradient)"
             name="Naive Estimator"
-            opacity={0.7}
+            opacity={0.8}
           />
           <Bar
             dataKey="mvue_count"
-            fill="#10b981"
+            fill="url(#mvueGradient)"
             name="MVUE Estimator"
-            opacity={0.7}
+            opacity={0.8}
           />
+          <defs>
+            <linearGradient id="naiveGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.6}/>
+            </linearGradient>
+            <linearGradient id="mvueGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#10b981" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#10b981" stopOpacity={0.6}/>
+            </linearGradient>
+          </defs>
         </BarChart>
       </ResponsiveContainer>
       <div style={styles.insights}>
@@ -126,38 +139,47 @@ export const DistributionChart: React.FC<DistributionChartProps> = ({ data }) =>
 
 const styles = {
   container: {
-    backgroundColor: '#ffffff',
-    padding: '24px',
-    borderRadius: '8px',
-    marginBottom: '24px',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(31, 31, 31, 0.8))',
+    backdropFilter: 'blur(10px)',
+    padding: '28px',
+    borderRadius: '16px',
+    marginBottom: '32px',
+    border: '1px solid rgba(59, 130, 246, 0.15)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.05)',
   } as React.CSSProperties,
   title: {
-    fontSize: '20px',
+    fontSize: '22px',
     fontWeight: 'bold',
-    marginBottom: '8px',
-    color: '#333',
+    marginBottom: '10px',
+    color: '#ffffff',
+    letterSpacing: '-0.3px',
   } as React.CSSProperties,
   subtitle: {
-    fontSize: '14px',
-    color: '#666',
-    marginBottom: '16px',
+    fontSize: '15px',
+    color: '#a0a0a0',
+    marginBottom: '20px',
+    lineHeight: '1.5',
   } as React.CSSProperties,
   placeholder: {
-    padding: '60px',
+    padding: '80px 40px',
     textAlign: 'center' as const,
-    color: '#999',
-    fontSize: '16px',
+    color: '#6b6b6b',
+    fontSize: '17px',
+    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0.02))',
+    borderRadius: '12px',
+    border: '1px dashed rgba(59, 130, 246, 0.2)',
   } as React.CSSProperties,
   insights: {
-    marginTop: '16px',
-    padding: '16px',
-    backgroundColor: '#f8f9fa',
-    borderRadius: '4px',
+    marginTop: '20px',
+    padding: '20px',
+    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.05))',
+    borderRadius: '12px',
+    border: '1px solid rgba(59, 130, 246, 0.15)',
   } as React.CSSProperties,
   insight: {
-    marginBottom: '8px',
-    fontSize: '14px',
-    color: '#333',
+    marginBottom: '10px',
+    fontSize: '15px',
+    color: '#d0d0d0',
+    lineHeight: '1.6',
   } as React.CSSProperties,
 };
