@@ -97,19 +97,23 @@ const styles = {
     marginBottom: '32px',
     border: '1px solid rgba(59, 130, 246, 0.2)',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.08)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   controlGroup: {
     marginBottom: '28px',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   label: {
     display: 'block',
     width: '100%',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   labelHeader: {
     marginBottom: '12px',
     fontSize: '17px',
     color: '#ffffff',
     fontWeight: '500',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   slider: {
     width: '100%',
@@ -121,6 +125,7 @@ const styles = {
     fontSize: '13px',
     color: '#6b6b6b',
     fontWeight: '500',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   button: {
     padding: '16px 28px',
@@ -133,6 +138,7 @@ const styles = {
     width: '100%',
     letterSpacing: '0.3px',
     textTransform: 'uppercase' as const,
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   buttonEnabled: {
     background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
@@ -152,5 +158,6 @@ const styles = {
     marginTop: '12px',
     textAlign: 'center' as const,
     fontWeight: '500',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
 };

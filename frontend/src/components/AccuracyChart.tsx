@@ -101,6 +101,7 @@ const styles = {
     marginBottom: '32px',
     border: '1px solid rgba(59, 130, 246, 0.15)',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.05)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   title: {
     fontSize: '22px',
@@ -108,12 +109,14 @@ const styles = {
     marginBottom: '10px',
     color: '#ffffff',
     letterSpacing: '-0.3px',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   subtitle: {
     fontSize: '15px',
     color: '#a0a0a0',
     marginBottom: '20px',
     lineHeight: '1.5',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   placeholder: {
     padding: '80px 40px',
@@ -123,6 +126,7 @@ const styles = {
     background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0.02))',
     borderRadius: '12px',
     border: '1px dashed rgba(59, 130, 246, 0.2)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   insights: {
     marginTop: '20px',
@@ -130,11 +134,13 @@ const styles = {
     background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.05))',
     borderRadius: '12px',
     border: '1px solid rgba(59, 130, 246, 0.15)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   insight: {
     marginBottom: '10px',
     fontSize: '15px',
     color: '#d0d0d0',
     lineHeight: '1.6',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
 };

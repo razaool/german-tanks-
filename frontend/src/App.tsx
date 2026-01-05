@@ -133,6 +133,10 @@ const styles = {
   app: {
     minHeight: '100vh',
     background: 'linear-gradient(135deg, #0a0a0a 0%, #111111 50%, #0d0d0d 100%)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
+    border: 'none',
+    margin: 0,
+    padding: 0,
   } as React.CSSProperties,
   header: {
     background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
@@ -141,6 +145,7 @@ const styles = {
     textAlign: 'center' as const,
     borderBottom: '1px solid rgba(59, 130, 246, 0.2)',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   title: {
     fontSize: '48px',
@@ -152,6 +157,7 @@ const styles = {
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
     letterSpacing: '-0.5px',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   subtitle: {
     fontSize: '20px',
@@ -160,6 +166,7 @@ const styles = {
     margin: 0,
     color: '#a0a0a0',
     fontWeight: '400',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   description: {
     fontSize: '15px',
@@ -168,11 +175,13 @@ const styles = {
     lineHeight: '1.7',
     opacity: 0.85,
     color: '#d0d0d0',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   main: {
     maxWidth: '1200px',
     margin: '0 auto',
     padding: '40px 24px',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   metrics: {
     background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(31, 31, 31, 0.8))',
@@ -182,6 +191,7 @@ const styles = {
     marginBottom: '32px',
     border: '1px solid rgba(255, 255, 255, 0.08)',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.05)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   metricsTitle: {
     fontSize: '22px',
@@ -189,6 +199,7 @@ const styles = {
     marginBottom: '20px',
     color: '#ffffff',
     letterSpacing: '-0.3px',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   metricsGrid: {
     display: 'grid',
@@ -202,6 +213,7 @@ const styles = {
     textAlign: 'center' as const,
     border: '1px solid rgba(59, 130, 246, 0.15)',
     transition: 'transform 0.2s, box-shadow 0.2s',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   metricLabel: {
     fontSize: '12px',
@@ -210,12 +222,14 @@ const styles = {
     textTransform: 'uppercase' as const,
     letterSpacing: '1px',
     fontWeight: '500',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   metricValue: {
     fontSize: '28px',
     fontWeight: 'bold',
     color: '#ffffff',
     textShadow: '0 0 20px rgba(59, 130, 246, 0.3)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   error: {
     background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1))',
@@ -225,6 +239,7 @@ const styles = {
     marginBottom: '24px',
     border: '1px solid rgba(239, 68, 68, 0.3)',
     backdropFilter: 'blur(10px)',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   footer: {
     background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
@@ -234,6 +249,7 @@ const styles = {
     fontSize: '15px',
     borderTop: '1px solid rgba(59, 130, 246, 0.2)',
     opacity: 0.9,
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
 };
 
