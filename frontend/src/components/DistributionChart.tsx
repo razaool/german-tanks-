@@ -88,7 +88,7 @@ export const DistributionChart: React.FC<DistributionChartProps> = ({ data }) =>
           />
           <Tooltip
             contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #10b981', borderRadius: '8px', color: '#ffffff' }}
-            formatter={(value: number, name: string) => [value, name === 'naive_count' ? 'Naive' : 'MVUE']}
+            formatter={(value: number, name: string) => [value, name]}
             labelFormatter={(label: number) => `Estimate: ${label.toLocaleString()}`}
           />
           <Legend wrapperStyle={{ color: '#d0d0d0', paddingTop: '20px' }} />

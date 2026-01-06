@@ -53,10 +53,7 @@ export const AccuracyChart: React.FC<AccuracyChartProps> = ({ data }) => {
           />
           <Tooltip
             contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #10b981', borderRadius: '8px', color: '#ffffff' }}
-            formatter={(value: number, name: string) => [
-              value.toFixed(2),
-              name === 'naive_rmse' ? 'Naive RMSE' : 'MVUE RMSE'
-            ]}
+            formatter={(value: number, name: string) => [value.toFixed(2), name]}
             labelFormatter={(label: number) => `Sample Size: ${label}`}
           />
           <Legend wrapperStyle={{ color: '#d0d0d0', paddingTop: '20px' }} />
