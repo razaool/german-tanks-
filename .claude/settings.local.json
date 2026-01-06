@@ -7,7 +7,9 @@
       "Bash(docker compose logs:*)",
       "Bash(docker exec:*)",
       "Bash(docker compose build:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }

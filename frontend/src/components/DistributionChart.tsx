@@ -72,8 +72,8 @@ export const DistributionChart: React.FC<DistributionChartProps> = ({ data }) =>
       <p style={styles.subtitle}>
         Comparing Naive (blue) vs MVUE (green) estimators across 10,000 simulations
       </p>
-      <ResponsiveContainer width="100%" height={400}>
-        <BarChart data={histogramData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
+      <ResponsiveContainer width="100%" height={450}>
+        <BarChart data={histogramData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" />
           <XAxis
             dataKey="estimate"
@@ -91,7 +91,7 @@ export const DistributionChart: React.FC<DistributionChartProps> = ({ data }) =>
             formatter={(value: number, name: string) => [value, name === 'naive_count' ? 'Naive' : 'MVUE']}
             labelFormatter={(label: number) => `Estimate: ${label.toLocaleString()}`}
           />
-          <Legend wrapperStyle={{ color: '#d0d0d0' }} />
+          <Legend wrapperStyle={{ color: '#d0d0d0', paddingTop: '20px' }} />
           <ReferenceLine
             x={data.true_population}
             stroke="#ef4444"

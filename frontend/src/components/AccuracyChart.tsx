@@ -34,10 +34,10 @@ export const AccuracyChart: React.FC<AccuracyChartProps> = ({ data }) => {
       <p style={styles.subtitle}>
         How estimator error decreases as you capture more tanks (Law of Large Numbers)
       </p>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={450}>
         <LineChart
           data={data.results}
-          margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+          margin={{ top: 20, right: 30, left: 20, bottom: 80 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" />
           <XAxis
@@ -59,7 +59,7 @@ export const AccuracyChart: React.FC<AccuracyChartProps> = ({ data }) => {
             ]}
             labelFormatter={(label: number) => `Sample Size: ${label}`}
           />
-          <Legend wrapperStyle={{ color: '#d0d0d0' }} />
+          <Legend wrapperStyle={{ color: '#d0d0d0', paddingTop: '20px' }} />
           <Line
             type="monotone"
             dataKey="naive_rmse"
