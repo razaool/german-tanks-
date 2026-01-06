@@ -103,7 +103,7 @@ function App() {
                   <div style={styles.metricValue}>{simulationData.metadata.computation_time_ms}ms</div>
                 </div>
                 <div style={styles.metric}>
-                  <div style={{...styles.metricLabel, color: '#3b82f6'}}>Naive RMSE</div>
+                  <div style={{...styles.metricLabel, color: '#06b6d4'}}>Naive RMSE</div>
                   <div style={styles.metricValue}>{simulationData.naive_rmse}</div>
                 </div>
                 <div style={styles.metric}>
@@ -139,11 +139,11 @@ const styles = {
     padding: 0,
   } as React.CSSProperties,
   header: {
-    background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+    background: 'linear-gradient(135deg, #0d1f1a 0%, #0e2626 50%, #0a1f1f 100%)',
     color: 'white',
     padding: '48px 24px',
     textAlign: 'center' as const,
-    borderBottom: '1px solid rgba(59, 130, 246, 0.2)',
+    borderBottom: '1px solid rgba(16, 185, 129, 0.2)',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
@@ -152,7 +152,7 @@ const styles = {
     fontWeight: 'bold',
     marginBottom: '12px',
     margin: 0,
-    background: 'linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4)',
+    background: 'linear-gradient(135deg, #10b981, #06b6d4, #6ee7b7)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
@@ -190,7 +190,7 @@ const styles = {
     borderRadius: '16px',
     marginBottom: '32px',
     border: '1px solid rgba(255, 255, 255, 0.08)',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.05)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(16, 185, 129, 0.05)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   metricsTitle: {
@@ -208,10 +208,10 @@ const styles = {
   } as React.CSSProperties,
   metric: {
     padding: '20px',
-    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.05))',
+    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.05))',
     borderRadius: '12px',
     textAlign: 'center' as const,
-    border: '1px solid rgba(59, 130, 246, 0.15)',
+    border: '1px solid rgba(16, 185, 129, 0.15)',
     transition: 'transform 0.2s, box-shadow 0.2s',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
@@ -228,7 +228,7 @@ const styles = {
     fontSize: '28px',
     fontWeight: 'bold',
     color: '#ffffff',
-    textShadow: '0 0 20px rgba(59, 130, 246, 0.3)',
+    textShadow: '0 0 20px rgba(16, 185, 129, 0.3)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   error: {
@@ -242,12 +242,12 @@ const styles = {
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   footer: {
-    background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+    background: 'linear-gradient(135deg, #0d1f1a 0%, #0a1f1f 100%)',
     color: 'white',
     padding: '32px 24px',
     textAlign: 'center' as const,
     fontSize: '15px',
-    borderTop: '1px solid rgba(59, 130, 246, 0.2)',
+    borderTop: '1px solid rgba(16, 185, 129, 0.2)',
     opacity: 0.9,
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,

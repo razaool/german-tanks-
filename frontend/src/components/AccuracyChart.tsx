@@ -52,7 +52,7 @@ export const AccuracyChart: React.FC<AccuracyChartProps> = ({ data }) => {
             stroke="#2a2a2a"
           />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #3b82f6', borderRadius: '8px', color: '#ffffff' }}
+            contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #10b981', borderRadius: '8px', color: '#ffffff' }}
             formatter={(value: number, name: string) => [
               value.toFixed(2),
               name === 'naive_rmse' ? 'Naive RMSE' : 'MVUE RMSE'
@@ -63,11 +63,11 @@ export const AccuracyChart: React.FC<AccuracyChartProps> = ({ data }) => {
           <Line
             type="monotone"
             dataKey="naive_rmse"
-            stroke="#3b82f6"
+            stroke="#06b6d4"
             name="Naive Estimator RMSE"
             strokeWidth={3}
-            dot={{ r: 5, fill: '#3b82f6', strokeWidth: 2 }}
-            activeDot={{ r: 7, fill: '#3b82f6', stroke: '#1a1a1a', strokeWidth: 2 }}
+            dot={{ r: 5, fill: '#06b6d4', strokeWidth: 2 }}
+            activeDot={{ r: 7, fill: '#06b6d4', stroke: '#1a1a1a', strokeWidth: 2 }}
           />
           <Line
             type="monotone"
@@ -99,8 +99,8 @@ const styles = {
     padding: '28px',
     borderRadius: '16px',
     marginBottom: '32px',
-    border: '1px solid rgba(59, 130, 246, 0.15)',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.05)',
+    border: '1px solid rgba(16, 185, 129, 0.15)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(16, 185, 129, 0.05)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   title: {
@@ -123,17 +123,17 @@ const styles = {
     textAlign: 'center' as const,
     color: '#6b6b6b',
     fontSize: '17px',
-    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0.02))',
+    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.03), rgba(6, 182, 212, 0.02))',
     borderRadius: '12px',
-    border: '1px dashed rgba(59, 130, 246, 0.2)',
+    border: '1px dashed rgba(16, 185, 129, 0.2)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   insights: {
     marginTop: '20px',
     padding: '20px',
-    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.05))',
+    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.05))',
     borderRadius: '12px',
-    border: '1px solid rgba(59, 130, 246, 0.15)',
+    border: '1px solid rgba(16, 185, 129, 0.15)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   insight: {

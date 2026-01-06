@@ -95,8 +95,8 @@ const styles = {
     padding: '28px',
     borderRadius: '16px',
     marginBottom: '32px',
-    border: '1px solid rgba(59, 130, 246, 0.2)',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.08)',
+    border: '1px solid rgba(16, 185, 129, 0.2)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(16, 185, 129, 0.08)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   controlGroup: {
@@ -141,10 +141,10 @@ const styles = {
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   buttonEnabled: {
-    background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+    background: 'linear-gradient(135deg, #10b981, #06b6d4)',
     color: 'white',
-    boxShadow: '0 4px 15px rgba(59, 130, 246, 0.4)',
-    border: '1px solid rgba(59, 130, 246, 0.3)',
+    boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)',
+    border: '1px solid rgba(16, 185, 129, 0.3)',
   } as React.CSSProperties,
   buttonDisabled: {
     background: 'linear-gradient(135deg, rgba(107, 107, 107, 0.2), rgba(75, 75, 75, 0.2))',

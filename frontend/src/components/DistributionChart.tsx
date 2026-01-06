@@ -87,7 +87,7 @@ export const DistributionChart: React.FC<DistributionChartProps> = ({ data }) =>
             stroke="#2a2a2a"
           />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #3b82f6', borderRadius: '8px', color: '#ffffff' }}
+            contentStyle={{ backgroundColor: '#1a1a1a', border: '1px solid #10b981', borderRadius: '8px', color: '#ffffff' }}
             formatter={(value: number, name: string) => [value, name === 'naive_count' ? 'Naive' : 'MVUE']}
             labelFormatter={(label: number) => `Estimate: ${label.toLocaleString()}`}
           />
@@ -113,8 +113,8 @@ export const DistributionChart: React.FC<DistributionChartProps> = ({ data }) =>
           />
           <defs>
             <linearGradient id="naiveGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
-              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.6}/>
+              <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.9}/>
+              <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.6}/>
             </linearGradient>
             <linearGradient id="mvueGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#10b981" stopOpacity={0.9}/>
@@ -125,7 +125,7 @@ export const DistributionChart: React.FC<DistributionChartProps> = ({ data }) =>
       </ResponsiveContainer>
       <div style={styles.insights}>
         <div style={styles.insight}>
-          <strong style={{ color: '#3b82f6' }}>Naive Estimator:</strong>
+          <strong style={{ color: '#06b6d4' }}>Naive Estimator:</strong>
           Biased low (underestimates) - Mean: {(data.true_population + data.naive_bias).toLocaleString()}
         </div>
         <div style={styles.insight}>
@@ -144,8 +144,8 @@ const styles = {
     padding: '28px',
     borderRadius: '16px',
     marginBottom: '32px',
-    border: '1px solid rgba(59, 130, 246, 0.15)',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.05)',
+    border: '1px solid rgba(16, 185, 129, 0.15)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(16, 185, 129, 0.05)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   title: {
@@ -168,17 +168,17 @@ const styles = {
     textAlign: 'center' as const,
     color: '#6b6b6b',
     fontSize: '17px',
-    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0.02))',
+    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.03), rgba(6, 182, 212, 0.02))',
     borderRadius: '12px',
-    border: '1px dashed rgba(59, 130, 246, 0.2)',
+    border: '1px dashed rgba(16, 185, 129, 0.2)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   insights: {
     marginTop: '20px',
     padding: '20px',
-    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.05))',
+    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.05))',
     borderRadius: '12px',
-    border: '1px solid rgba(59, 130, 246, 0.15)',
+    border: '1px solid rgba(16, 185, 129, 0.15)',
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif',
   } as React.CSSProperties,
   insight: {
