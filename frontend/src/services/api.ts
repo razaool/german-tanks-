@@ -7,7 +7,9 @@ import {
   SimulationRequest,
   SimulationResponse,
   AccuracyRequest,
-  AccuracyResponse
+  AccuracyResponse,
+  BayesianRequest,
+  BayesianResponse
 } from '../types/simulation';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -51,6 +53,19 @@ export const simulationService = {
   ): Promise<AccuracyResponse> {
     const response = await api.post<AccuracyResponse>(
       '/accuracy',
+      request
+    );
+    return response.data;
+  },
+
+  /**
+   * Calculate Bayesian posterior distribution.
+   */
+  async getBayesianAnalysis(
+    request: BayesianRequest
+  ): Promise<BayesianResponse> {
+    const response = await api.post<BayesianResponse>(
+      '/bayesian',
       request
     );
     return response.data;

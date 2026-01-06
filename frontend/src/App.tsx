@@ -6,12 +6,16 @@ import React, { useState } from 'react';
 import { SimulationControls } from './components/SimulationControls';
 import { DistributionChart } from './components/DistributionChart';
 import { AccuracyChart } from './components/AccuracyChart';
+import { BayesianChart } from './components/BayesianChart';
+import { AnalysisToggle, AnalysisType } from './components/AnalysisToggle';
 import { simulationService } from './services/api';
-import { SimulationResponse, AccuracyResponse } from './types/simulation';
+import { SimulationResponse, AccuracyResponse, BayesianResponse } from './types/simulation';
 
 function App() {
+  const [analysisType, setAnalysisType] = useState<AnalysisType>('frequentist');
   const [simulationData, setSimulationData] = useState<SimulationResponse | null>(null);
   const [accuracyData, setAccuracyData] = useState<AccuracyResponse | null>(null);
+  const [bayesianData, setBayesianData] = useState<BayesianResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,30 +24,42 @@ function App() {
     setError(null);
 
     try {
-      // Run main simulation
-      const simResult = await simulationService.runSimulation({
-        true_population: truePopulation,
-        sample_size: sampleSize
-      });
-      setSimulationData(simResult);
+      if (analysisType === 'frequentist') {
+        // Run main simulation
+        const simResult = await simulationService.runSimulation({
+          true_population: truePopulation,
+          sample_size: sampleSize
+        });
+        setSimulationData(simResult);
 
-      // Generate accuracy analysis across multiple sample sizes
-      // Create a range from 5 to max(sample_size * 2, 100)
-      const minSample = 5;
-      const maxSample = Math.max(sampleSize * 2, 100);
-      const numPoints = 10;
-      const step = Math.floor((maxSample - minSample) / (numPoints - 1));
+        // Generate accuracy analysis across multiple sample sizes
+        // Create a range from 5 to max(sample_size * 2, 100)
+        const minSample = 5;
+        const maxSample = Math.max(sampleSize * 2, 100);
+        const numPoints = 10;
+        const step = Math.floor((maxSample - minSample) / (numPoints - 1));
 
-      const sampleSizes = Array.from(
-        { length: numPoints },
-        (_, i) => minSample + i * step
-      );
+        const sampleSizes = Array.from(
+          { length: numPoints },
+          (_, i) => minSample + i * step
+        );
 
-      const accuracyResult = await simulationService.getAccuracyAnalysis({
-        true_population: truePopulation,
-        sample_sizes: sampleSizes
-      });
-      setAccuracyData(accuracyResult);
+        const accuracyResult = await simulationService.getAccuracyAnalysis({
+          true_population: truePopulation,
+          sample_sizes: sampleSizes
+        });
+        setAccuracyData(accuracyResult);
+        setBayesianData(null); // Clear Bayesian data when running Frequentist
+      } else {
+        // Run Bayesian analysis
+        const bayesianResult = await simulationService.getBayesianAnalysis({
+          true_population: truePopulation,
+          sample_size: sampleSize
+        });
+        setBayesianData(bayesianResult);
+        setSimulationData(null); // Clear Frequentist data when running Bayesian
+        setAccuracyData(null);
+      }
 
     } catch (err) {
       console.error('Simulation failed:', err);
@@ -73,6 +89,12 @@ function App() {
       </header>
 
       <main style={styles.main}>
+        <AnalysisToggle
+          value={analysisType}
+          onChange={setAnalysisType}
+          disabled={isLoading}
+        />
+
         <SimulationControls onSimulate={handleSimulate} isLoading={isLoading} />
 
         {error && (
@@ -118,11 +140,16 @@ function App() {
         )}
 
         {accuracyData && <AccuracyChart data={accuracyData} />}
+
+        {bayesianData && <BayesianChart data={bayesianData} />}
       </main>
 
       <footer style={styles.footer}>
         <p>
-          <strong>The Math:</strong> Naive: N̂ = m (biased) | MVUE: N̂ = m(1 + 1/k) - 1 (unbiased)
+          <strong>Frequentist:</strong> Naive: N̂ = m (biased) | MVUE: N̂ = m(1 + 1/k) - 1 (unbiased)
+        </p>
+        <p style={{ marginTop: '8px', opacity: 0.85 }}>
+          <strong>Bayesian:</strong> Posterior: P(N|data) ∝ P(data|N) × P(N) | Uses Pareto prior and grid approximation
         </p>
       </footer>
     </div>

@@ -8,11 +8,17 @@ simulations and analyzing estimator accuracy.
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import time
+import numpy as np
 from src.simulation import (
     run_monte_carlo_simulation,
     calculate_rmse,
     calculate_bias,
     calculate_variance
+)
+from src.bayesian import (
+    calculate_bayesian_posterior,
+    calculate_credible_interval,
+    run_bayesian_simulation
 )
 
 app = Flask(__name__)
@@ -218,6 +224,135 @@ def accuracy():
         }), 500
 
 
+@app.route('/api/bayesian', methods=['POST'])
+def bayesian():
+    """
+    Calculate Bayesian posterior distribution for the German Tank Problem.
+
+    This endpoint uses a grid approximation to calculate the posterior
+    distribution of N given observed serial numbers.
+
+    Expected JSON payload:
+    {
+        "true_population": int (N),
+        "sample_size": int (k),
+        "max_observed": int (m) - optional, will simulate if not provided
+    }
+
+    Returns:
+    {
+        "true_population": int,
+        "sample_size": int,
+        "max_observed": int,
+        "n_values": [float, ...],  # Grid of N values
+        "posterior": [float, ...],  # Posterior probabilities
+        "map_estimate": float,  # Maximum a posteriori estimate
+        "mean_estimate": float,  # Expected value of posterior
+        "std_estimate": float,  # Standard deviation
+        "credible_interval_95": [lower, upper],  # 95% credible interval
+        "metadata": {
+            "computation_time_ms": float,
+            "grid_points": int
+        }
+    }
+
+    Error responses:
+        - 400: Invalid input parameters
+        - 500: Internal server error
+    """
+    try:
+        data = request.get_json()
+        true_population = int(data['true_population'])
+        sample_size = int(data['sample_size'])
+
+        # Validate inputs
+        if sample_size >= true_population:
+            return jsonify({
+                'error': 'Sample size must be less than true population'
+            }), 400
+
+        if sample_size < 2:
+            return jsonify({
+                'error': 'Sample size must be at least 2'
+            }), 400
+
+        if true_population < 100:
+            return jsonify({
+                'error': 'True population must be at least 100'
+            }), 400
+
+        if true_population > 100000:
+            return jsonify({
+                'error': 'True population must be at most 100,000'
+            }), 400
+
+        # Simulate observation if max_observed not provided
+        if 'max_observed' in data and data['max_observed'] is not None:
+            max_observed = int(data['max_observed'])
+            if max_observed >= true_population:
+                return jsonify({
+                    'error': 'Max observed must be less than true population'
+                }), 400
+            if max_observed < 1:
+                return jsonify({
+                    'error': 'Max observed must be at least 1'
+                }), 400
+        else:
+            # Simulate a random observation
+            sample = np.random.choice(
+                np.arange(1, true_population + 1),
+                size=sample_size,
+                replace=False
+            )
+            max_observed = int(np.max(sample))
+
+        # Calculate posterior distribution
+        start_time = time.time()
+        grid_points, posterior, map_estimate, mean_estimate, std_estimate = \
+            calculate_bayesian_posterior(
+                max_observed,
+                sample_size,
+                n_grid_points=500
+            )
+        computation_time = (time.time() - start_time) * 1000
+
+        # Calculate credible interval
+        lower_bound, upper_bound = calculate_credible_interval(
+            grid_points,
+            posterior,
+            confidence=0.95
+        )
+
+        return jsonify({
+            'true_population': true_population,
+            'sample_size': sample_size,
+            'max_observed': max_observed,
+            'n_values': grid_points.tolist(),
+            'posterior': posterior.tolist(),
+            'map_estimate': round(map_estimate, 2),
+            'mean_estimate': round(mean_estimate, 2),
+            'std_estimate': round(std_estimate, 2),
+            'credible_interval_95': [round(lower_bound, 2), round(upper_bound, 2)],
+            'metadata': {
+                'computation_time_ms': round(computation_time, 2),
+                'grid_points': 500
+            }
+        })
+
+    except KeyError as e:
+        return jsonify({
+            'error': f'Missing required field: {str(e)}'
+        }), 400
+    except ValueError as e:
+        return jsonify({
+            'error': f'Invalid input: {str(e)}'
+        }), 400
+    except Exception as e:
+        return jsonify({
+            'error': f'Internal server error: {str(e)}'
+        }), 500
+
+
 @app.route('/health', methods=['GET'])
 def health():
     """
@@ -243,6 +378,7 @@ def index():
         'endpoints': {
             'POST /api/simulate': 'Run Monte Carlo simulation',
             'POST /api/accuracy': 'Calculate accuracy across sample sizes',
+            'POST /api/bayesian': 'Calculate Bayesian posterior distribution',
             'GET /health': 'Health check'
         },
         'documentation': 'See README.md for usage details'

@@ -43,3 +43,30 @@ export interface HistogramBin {
   naive_count: number;
   mvue_count: number;
 }
+
+export interface BayesianRequest {
+  true_population: number;
+  sample_size: number;
+  max_observed?: number;
+}
+
+export interface BayesianResponse {
+  true_population: number;
+  sample_size: number;
+  max_observed: number;
+  n_values: number[];
+  posterior: number[];
+  map_estimate: number;
+  mean_estimate: number;
+  std_estimate: number;
+  credible_interval_95: [number, number];
+  metadata: {
+    computation_time_ms: number;
+    grid_points: number;
+  };
+}
+
+export interface PosteriorDataPoint {
+  n: number;
+  probability: number;
+}
