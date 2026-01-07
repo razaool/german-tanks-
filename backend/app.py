@@ -25,11 +25,12 @@ app = Flask(__name__)
 
 # Configure CORS for React frontend
 # Allow requests from local development and production (Render, Vercel, etc.)
+# Apply CORS globally to handle preflight requests correctly
 CORS(app, resources={
-    r"/api/*": {
+    r"/*": {
         "origins": "*",  # Allow all origins for production deployment
         "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"],
+        "allow_headers": ["Content-Type", "Authorization"],
         "max_age": 3600,
         "supports_credentials": False
     }
