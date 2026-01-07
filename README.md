@@ -249,15 +249,59 @@ Health check endpoint.
 - Allows requests from Vite dev server (localhost:5173) and production (localhost:3000)
 - In production, nginx reverse proxy handles routing
 
-## Future Enhancements
+## Production Deployment
 
-- [ ] Bayesian estimation with probability distributions
+### Quick Deploy to Render (Free Tier)
+
+📖 **See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions**
+
+**Quick Steps:**
+1. Push code to GitHub
+2. Create account at [render.com](https://render.com)
+3. Deploy backend as Web Service (from `backend/` directory)
+4. Deploy frontend as Static Site (from `frontend/` directory)
+5. Set `VITE_API_URL` environment variable in frontend
+
+**Your URLs:**
+- Frontend: `https://german-tanks-frontend.onrender.com`
+- Backend: `https://german-tanks-backend.onrender.com`
+
+**Free Tier Features:**
+- ✅ Automatic SSL certificates
+- ✅ Auto-deploys from GitHub
+- ✅ DDoS protection
+- ⚠️ Services spin down after 15 min inactivity (30-60 sec cold start)
+
+### Alternative: Docker Deployment
+
+```bash
+docker-compose up -d
+```
+
+Access at http://localhost
+
+## Features
+
+### ✅ Implemented
+- [x] Frequentist analysis (Naive vs MVUE estimators)
+- [x] Bayesian analysis (posterior distributions)
+- [x] Monte Carlo simulation (10,000 iterations)
+- [x] Interactive distribution charts
+- [x] RMSE accuracy analysis
+- [x] Toggle between Frequentist/Bayesian approaches
+- [x] 95% credible intervals (Bayesian)
+- [x] Real-time parameter adjustment
+- [x] Production-ready deployment
+
+### 🚧 Future Enhancements
+
 - [ ] Confidence intervals on charts
 - [ ] Export simulation data as CSV
 - [ ] Historical WWII context section
 - [ ] Animated histogram transitions
 - [ ] Comparison mode for multiple simulations
 - [ ] Backend caching for identical parameters
+- [ ] Mobile responsive optimizations
 
 ## Educational Value
 
