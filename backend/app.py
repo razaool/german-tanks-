@@ -24,13 +24,14 @@ from src.bayesian import (
 app = Flask(__name__)
 
 # Configure CORS for React frontend
-# Allow requests from frontend (80), backend direct (5001), Vite dev server (5173), and alternative (3000)
+# Allow requests from local development and production (Render, Vercel, etc.)
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:80", "http://localhost", "http://localhost:5001", "http://localhost:5173", "http://localhost:3000"],
+        "origins": "*",  # Allow all origins for production deployment
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type"],
-        "max_age": 3600
+        "max_age": 3600,
+        "supports_credentials": False
     }
 })
 

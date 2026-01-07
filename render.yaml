@@ -1,0 +1,16 @@
+services:
+  # Type: web service
+  - type: web
+    name: german-tanks-backend
+    env: python
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: PORT
+        value: 5000
+    healthCheckPath: /health
+
+# For frontend, we'll deploy as a static site separately
+# See deployment instructions in README
