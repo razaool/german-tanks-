@@ -20,61 +20,114 @@ The application consists of:
 
 1. **Go to Render Dashboard**
    - Log into [dashboard.render.com](https://dashboard.render.com)
-   - Click "New +" button
+   - Click the "New" button in the top right
    - Select "Web Service"
 
 2. **Connect GitHub Repository**
-   - Connect your GitHub account if not already connected
-   - Select the `german-tanks-` repository
-   - Render will detect the `render.yaml` configuration
+   - Click "Connect GitHub" (if not already connected)
+   - Authorize Render to access your repositories
+   - Find and select `german-tanks-` repository
+   - Click "Connect"
 
-3. **Configure Service** (if auto-detection doesn't work):
+3. **Configure Service** (Important - Use These Settings):
+
+   **Basic Settings:**
    - **Name**: `german-tanks-backend`
-   - **Environment**: `Python 3`
-   - **Root Directory**: `backend`
+   - **Region**: Select Oregon (us-west) or Frankfurt (eu-central) for free tier
+   - **Branch**: `main`
+
+   **Build & Deploy Settings:**
+   - **Runtime**: `Python 3` (click to see Python version selector)
    - **Build Command**: `pip install --no-cache-dir -r requirements.txt`
    - **Start Command**: `python app.py`
 
-4. **Configure Environment**:
-   - **Region**: Oregon (us-west) or Frankfurt (eu-central) for free tier
-   - **Branch**: `main`
-   - **Instance Type**: **Free** (this is important!)
-   - **RAM**: 512 MB (free tier)
+   **Root Directory** (Look for this field - it might be under "Advanced"):
+   - Set to: `backend`
 
-5. **Advanced Settings** (optional):
-   - Add health check path: `/health`
-   - No auto-deploy needed for backend unless backend changes
-
-6. **Click "Create Web Service"**
+4. **Click "Create Web Service"** at the bottom
    - Render will deploy your backend
-   - Wait for deployment to complete (check the logs)
-   - Your backend URL will be: `https://german-tanks-backend.onrender.com`
+   - Wait for deployment to complete (click the "Logs" tab to watch progress)
+   - Your backend URL will be something like: `https://german-tanks-backend.onrender.com`
 
 ### Part 2: Deploy Frontend
 
 1. **Go to Render Dashboard**
-   - Click "New +" again
-   - Select "Static Site"
+   - Click the "New" button again
+   - This time select "Static Site" (NOT Web Service)
 
 2. **Configure Frontend Service**:
+
+   **Basic Settings:**
    - **Name**: `german-tanks-frontend`
    - **Branch**: `main`
    - **Root Directory**: `frontend`
+
+   **Build Settings:**
    - **Build Command**: `npm run build`
    - **Publish Directory**: `dist`
 
-3. **Configure Environment Variables**:
-   - Add environment variable: `VITE_API_URL`
-   - **Value**: `https://german-tanks-backend.onrender.com`
-   - (Use your actual backend URL from Part 1)
+3. **Add Environment Variable**:
+   - Look for "Environment" section
+   - Click "+ Add Environment Variable"
+   - **Key**: `VITE_API_URL`
+   - **Value**: Your backend URL from Part 1 (e.g., `https://german-tanks-backend.onrender.com`)
+   - Click "Save"
 
-4. **Configure Instance**:
-   - **Region**: Same as backend (Oregon/Frankfurt)
-   - **Instance Type**: **Free** (important!)
-
-5. **Click "Create Static Site"**
+4. **Click "Create Static Site"**
    - Render will build and deploy your frontend
-   - Your frontend URL will be: `https://german-tanks-frontend.onrender.com`
+   - Your frontend URL will be something like: `https://german-tanks-frontend.onrender.com`
+
+## Troubleshooting Render Deployment
+
+### Can't Find "Root Directory" Field
+
+The "Root Directory" field might be hidden. Try these steps:
+
+1. **Method 1: Advanced Settings**
+   - Look for a "Advanced" or "More Settings" button/accordion
+   - Click it to expand additional options
+   - Root Directory should appear there
+
+2. **Method 2: Use render.yaml (Already Configured)**
+   - We've already created `render.yaml` in your repo
+   - When you connect the repo, Render should auto-detect it
+   - If it does, you'll see "Configuration detected from render.yaml"
+   - Just click "Create Web Service"
+
+### Build Command / Start Command Not Visible
+
+If you don't see these fields:
+
+1. Make sure you selected **"Web Service"** (not Static Site) for the backend
+2. After selecting Python as runtime, the fields should appear
+3. If still not visible, try refreshing the page
+4. Or try connecting the repository again
+
+### Alternative: Manual Configuration via Dashboard
+
+If auto-detection doesn't work:
+
+1. Go to your service in Render dashboard
+2. Click "Settings" tab
+3. Scroll to "Build & Deploy"
+4. You can manually set:
+   - Build Command
+   - Start Command
+   - Working Directory (this is where you put `backend`)
+
+### Frontend Build Failing
+
+If frontend build fails:
+
+1. Make sure `package.json` exists in `frontend/` directory
+2. Check that `npm run build` works locally first:
+   ```bash
+   cd frontend
+   npm install
+   npm run build
+   ```
+3. Check the build logs in Render dashboard for specific errors
+4. Common issue: Node version mismatch - Render uses latest Node by default
 
 ## Important Notes for Free Tier
 
