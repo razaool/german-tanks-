@@ -12,7 +12,12 @@ import {
   BayesianResponse
 } from '../types/simulation';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// Ensure API_BASE_URL includes /api path
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE_URL = BASE_URL.endsWith('/api') ? BASE_URL : `${BASE_URL}/api`;
+
+// For health check (root endpoint, not under /api)
+const ROOT_BASE_URL = API_BASE_URL.replace('/api', '') || BASE_URL;
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -24,7 +29,7 @@ export const api = axios.create({
 
 // Separate client for endpoints not under /api
 const apiRoot = axios.create({
-  baseURL: API_BASE_URL.replace('/api', ''),
+  baseURL: ROOT_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
