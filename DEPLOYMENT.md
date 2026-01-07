@@ -71,6 +71,9 @@ The application consists of:
    - Click "+ Add Environment Variable"
    - **Key**: `VITE_API_URL`
    - **Value**: Your backend URL from Part 1 (e.g., `https://german-tanks-backend.onrender.com`)
+     - **Note**: The code automatically adds `/api` if not present, so either format works:
+     - `https://german-tanks-backend.onrender.com` ✅
+     - `https://german-tanks-backend.onrender.com/api` ✅
    - Click "Save"
 
 4. **Click "Create Static Site"**
